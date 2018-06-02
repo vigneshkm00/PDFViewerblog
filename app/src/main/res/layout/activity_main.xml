@@ -11,12 +11,15 @@
         android:id="@+id/book_grid"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/vic"
         android:columnWidth="120dp"
         android:horizontalSpacing="0dp"
         android:numColumns="auto_fit"
         android:verticalSpacing="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 </android.support.constraint.ConstraintLayout>

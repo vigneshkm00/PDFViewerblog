@@ -8,6 +8,7 @@ import com.github.barteksc.pdfviewer.PDFView;
 import com.github.barteksc.pdfviewer.listener.OnLoadCompleteListener;
 import com.github.barteksc.pdfviewer.listener.OnPageChangeListener;
 import com.github.barteksc.pdfviewer.scroll.DefaultScrollHandle;
+import com.github.barteksc.pdfviewer.util.FitPolicy;
 import com.shockwave.pdfium.PdfDocument;
 
 import java.util.List;
@@ -34,12 +35,17 @@ public class pdf_viewer extends Activity implements OnPageChangeListener,OnLoadC
 
         pdfView.fromAsset(SAMPLE_FILE)
                 .defaultPage(pageNumber)
+                .swipeHorizontal(true)
+               // .onError(error)
+                //.pageSnap(true)
+                //.autoSpacing(true)
+                //.pageFling(true)
                 .enableSwipe(true)
-
-                .swipeHorizontal(false)
                 .onPageChange(this)
+                .enableAntialiasing(true)
                 .enableAnnotationRendering(true)
                 .onLoad(this)
+                .pageFitPolicy(FitPolicy.BOTH)
                 .scrollHandle(new DefaultScrollHandle(this))
                 .load();
     }
