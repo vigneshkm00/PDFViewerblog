@@ -1,6 +1,8 @@
 package pdfviewer.pdfviewer;
 
 import android.app.Activity;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -15,8 +17,8 @@ import java.util.List;
 
 public class pdf_viewer extends Activity implements OnPageChangeListener,OnLoadCompleteListener{
     private static final String TAG = pdf_viewer.class.getSimpleName();
-    public static final String SAMPLE_FILE = "android_tutorial.pdf";
-    PDFView pdfView;
+
+    PDFView pdf_View;
     Integer pageNumber = 0;
     String pdfFileName;
 
@@ -24,16 +26,18 @@ public class pdf_viewer extends Activity implements OnPageChangeListener,OnLoadC
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
+         String SAMPLE_FILE = "book_demo.pdf";
 
 
-        pdfView= (PDFView)findViewById(R.id.pdfView);
+        pdf_View= (PDFView)findViewById(R.id.pdfView);
         displayFromAsset(SAMPLE_FILE);
     }
 
     private void displayFromAsset(String assetFileName) {
         pdfFileName = assetFileName;
-
-        pdfView.fromAsset(SAMPLE_FILE)
+        pdf_View.stopFling();
+        pdf_View.setBackgroundColor(Color.BLACK);
+        pdf_View.fromAsset(assetFileName)
                 .defaultPage(pageNumber)
                 .swipeHorizontal(true)
                // .onError(error)
@@ -45,6 +49,8 @@ public class pdf_viewer extends Activity implements OnPageChangeListener,OnLoadC
                 .enableAntialiasing(true)
                 .enableAnnotationRendering(true)
                 .onLoad(this)
+                .spacing(20)
+                .enableAntialiasing(true)
                 .pageFitPolicy(FitPolicy.BOTH)
                 .scrollHandle(new DefaultScrollHandle(this))
                 .load();
@@ -60,8 +66,8 @@ public class pdf_viewer extends Activity implements OnPageChangeListener,OnLoadC
 
     @Override
     public void loadComplete(int nbPages) {
-        PdfDocument.Meta meta = pdfView.getDocumentMeta();
-        printBookmarksTree(pdfView.getTableOfContents(), "-");
+        PdfDocument.Meta meta = pdf_View.getDocumentMeta();
+        printBookmarksTree(pdf_View.getTableOfContents(), "-");
 
     }
 

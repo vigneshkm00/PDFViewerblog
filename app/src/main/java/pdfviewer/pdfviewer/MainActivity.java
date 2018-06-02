@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Intent i = new Intent(this,pdf_viewer.class);
-        i.getStringExtra("1");
+        i.getStringExtra(String.valueOf(position).toString());
         startActivity(i);
         Toast.makeText(getApplicationContext(),"book Opened"+(position+1),Toast.LENGTH_LONG).show();
     }
@@ -59,7 +59,7 @@ class VivzAdapter extends BaseAdapter
         list=new ArrayList<Book>();
         Resources res=context.getResources();
         String[] book_array = res.getStringArray(R.array.book_name);
-        int[] book_img = {R.drawable.image,R.drawable.image,R.drawable.image,R.drawable.image,R.drawable.image,R.drawable.image,R.drawable.image,R.drawable.image,R.drawable.image,R.drawable.image};
+        int[] book_img = {R.drawable.image,R.drawable.cover,R.drawable.image,R.drawable.cover,R.drawable.image,R.drawable.cover,R.drawable.image,R.drawable.cover,R.drawable.image,R.drawable.image};
         for (int i =0;i<10;i++)
         {
             Book tempbook = new Book(book_img[i],book_array[i]);
